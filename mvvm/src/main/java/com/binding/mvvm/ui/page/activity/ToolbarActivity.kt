@@ -34,7 +34,11 @@ abstract class ToolbarActivity : BaseActivity() {
 
                 mToolbar = builder.build().also {
                     addView(it, 0)
-                    immersive(it, isDarkMode())
+                    if (isDarkMode() == null) {
+                        immersive(it, Config.darkMode)
+                    } else {
+                        immersive(it, isDarkMode())
+                    }
                 }
 
                 super.onCreate(savedInstanceState)
@@ -60,5 +64,5 @@ abstract class ToolbarActivity : BaseActivity() {
         .setBackgroundColor(Config.toolbarBasicBg)
         .setTitleTextColor(Config.toolbarBasicTitleColor)
 
-    protected open fun isDarkMode() = false
+    protected open fun isDarkMode(): Boolean? = null
 }

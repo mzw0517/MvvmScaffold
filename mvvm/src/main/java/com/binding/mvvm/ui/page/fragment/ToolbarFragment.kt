@@ -40,7 +40,11 @@ abstract class ToolbarFragment : BaseFragment() {
 
                 mToolbar = builder.build().also {
                     addView(it, 0)
-                    requireActivity().immersive(it, isDarkMode())
+                    if (isDarkMode() == null) {
+                        requireActivity().immersive(it, Config.darkMode)
+                    } else {
+                        requireActivity().immersive(it, isDarkMode())
+                    }
                 }
 
                 addView(super.onCreateView(inflater, container, savedInstanceState), 1)
@@ -52,6 +56,5 @@ abstract class ToolbarFragment : BaseFragment() {
         .setBackgroundColor(Config.toolbarBasicBg)
         .setTitleTextColor(Config.toolbarBasicTitleColor)
 
-    protected open fun isDarkMode() = false
-
+    protected open fun isDarkMode(): Boolean? = null
 }

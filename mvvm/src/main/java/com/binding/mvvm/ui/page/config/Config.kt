@@ -16,13 +16,40 @@ object Config {
      */
     var delayMillis: Long = 350
 
-    // toolbar背景色
+    /**
+     * 全局配置toolbar背景色
+     *
+     * 假如某个页面toolbar背景色不一样
+     * 可以在实现方法getToolbarConfig(builder: BaseToolbar.Builder)
+     * 通过builder.setBackgroundColor()单独修改
+     */
     var toolbarBasicBg = Color.WHITE
 
-    // toolbar标题颜色
+    /**
+     * 全局配置toolbar标题颜色
+     *
+     * 假如某个页面toolbar标题颜色不一样
+     * 可以在实现方法getToolbarConfig(builder: BaseToolbar.Builder)
+     * 通过builder.setTitleTextColor()单独修改
+     */
     var toolbarBasicTitleColor = Color.BLACK
 
-    // toolbar返回按钮图标
+    /**
+     * 全局配置toolbar返回按钮图标
+     *
+     * 假如某个页面返回按钮不一样
+     * 可以在实现方法getToolbarConfig(builder: BaseToolbar.Builder)
+     * 通过builder.setBackButton(R.drawable.xxx)单独修改
+     */
     var toolbarBasicNavBackIcon = R.drawable.ic_nav_back_black
+
+    /**
+     * 全局配置状态栏文字颜色 true为黑色 false为白色
+     *
+     * 假如某个页面返回按钮不一样
+     * 可以在实现方法getToolbarConfig(builder: BaseToolbar.Builder)
+     * 通过builder.setBackButton(R.drawable.xxx)单独修改
+     */
+    var darkMode = true
 
 }
