@@ -44,6 +44,18 @@ object Config {
     var toolbarBasicNavBackIcon = R.drawable.ic_nav_back_black
 
     /**
+     * 全局配置toolbar是否需要一个假的状态栏
+     */
+    var toolbarNeedFakeStatusBar = false
+
+    /**
+     * 全局配置toolbar状态栏颜色
+     *
+     * 在toolbarNeedFakeStatusBar = true 的情况下才有效
+     */
+    var toolbarStatusBarColor = Color.WHITE
+
+    /**
      * 全局配置状态栏文字颜色 true为黑色 false为白色
      *
      * 假如某个页面返回按钮不一样

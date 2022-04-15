@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.binding.mvvm.ui.page.config.Config
-import com.binding.mvvm.ui.statusbar.immersive
 import com.binding.mvvm.ui.toolbar.BaseToolbar
 
 abstract class ToolbarActivity : BaseActivity() {
@@ -34,11 +33,6 @@ abstract class ToolbarActivity : BaseActivity() {
 
                 mToolbar = builder.build().also {
                     addView(it, 0)
-                    if (isDarkMode() == null) {
-                        immersive(it, Config.darkMode)
-                    } else {
-                        immersive(it, isDarkMode())
-                    }
                 }
 
                 super.onCreate(savedInstanceState)
@@ -59,10 +53,16 @@ abstract class ToolbarActivity : BaseActivity() {
         }
     }
 
-    private fun configBasicToolbar() = BaseToolbar.Builder(this)
-        .setBackButton(Config.toolbarBasicNavBackIcon)
-        .setBackgroundColor(Config.toolbarBasicBg)
-        .setTitleTextColor(Config.toolbarBasicTitleColor)
+    private fun configBasicToolbar(): BaseToolbar.Builder {
+        val builder = BaseToolbar.Builder(this)
+            .setBackButton(Config.toolbarBasicNavBackIcon)
+            .setBackgroundColor(Config.toolbarBasicBg)
+            .setTitleTextColor(Config.toolbarBasicTitleColor)
 
-    protected open fun isDarkMode(): Boolean? = null
+        if (Config.toolbarNeedFakeStatusBar) {
+            builder.setStatusBarColor(Config.toolbarStatusBarColor)
+        }
+        return builder
+    }
+
 }

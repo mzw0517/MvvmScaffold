@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.binding.mvvm.ui.page.config.Config
-import com.binding.mvvm.ui.statusbar.immersive
 import com.binding.mvvm.ui.toolbar.BaseToolbar
 
 abstract class ToolbarFragment : BaseFragment() {
@@ -40,21 +39,22 @@ abstract class ToolbarFragment : BaseFragment() {
 
                 mToolbar = builder.build().also {
                     addView(it, 0)
-                    if (isDarkMode() == null) {
-                        requireActivity().immersive(it, Config.darkMode)
-                    } else {
-                        requireActivity().immersive(it, isDarkMode())
-                    }
                 }
 
                 addView(super.onCreateView(inflater, container, savedInstanceState), 1)
             }
     }
 
-    private fun configBasicToolbar() = BaseToolbar.Builder(requireActivity())
-        .setBackButton(Config.toolbarBasicNavBackIcon)
-        .setBackgroundColor(Config.toolbarBasicBg)
-        .setTitleTextColor(Config.toolbarBasicTitleColor)
+    private fun configBasicToolbar(): BaseToolbar.Builder {
+        val builder = BaseToolbar.Builder(requireActivity())
+            .setBackButton(Config.toolbarBasicNavBackIcon)
+            .setBackgroundColor(Config.toolbarBasicBg)
+            .setTitleTextColor(Config.toolbarBasicTitleColor)
 
-    protected open fun isDarkMode(): Boolean? = null
+        if (Config.toolbarNeedFakeStatusBar) {
+            builder.setStatusBarColor(Config.toolbarStatusBarColor)
+        }
+        return builder
+    }
+
 }
