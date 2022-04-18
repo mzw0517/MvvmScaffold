@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -176,8 +177,8 @@ public class BaseToolbar extends Toolbar {
             };
         }
         mBackView = createImageMenu(mContext, resId, onClickListener);
-        int padding = dp2px(mContext, 12);
-        mBackView.setPadding(padding * 2, 0, padding, 0);
+        int padding = dp2px(12);
+        mBackView.setPadding(padding, 0, padding, 0);
 
         addLeftView(mBackView);
     }
@@ -203,7 +204,7 @@ public class BaseToolbar extends Toolbar {
                 ((Activity) getContext()).onBackPressed();//调用activity的返回键
         });
 
-        int padding = dp2px(mContext, 10);
+        int padding = dp2px(10);
         mBackView.setPadding(0, 0, padding, 0);
 
         addLeftView(mBackView);
@@ -854,7 +855,7 @@ public class BaseToolbar extends Toolbar {
         textMenu.setTextColor(textColorId);
         textMenu.setTextSize(textSize);
         textMenu.setGravity(Gravity.CENTER);
-        int padding = dp2px(context, 5);
+        int padding = dp2px(5);
         textMenu.setPadding(padding, 0, padding, 0);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.CENTER;
@@ -873,7 +874,7 @@ public class BaseToolbar extends Toolbar {
      */
     public static ImageView createImageMenu(Context context, @DrawableRes int imageResId, ImageView.ScaleType scaleType, OnClickListener listener) {
         ImageView imageMenu = new ImageView(context);
-        int padding = dp2px(context, 5);
+        int padding = dp2px(5);
         imageMenu.setPadding(padding, 0, padding, 0);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.CENTER;
@@ -901,7 +902,7 @@ public class BaseToolbar extends Toolbar {
             backLayout.addView(tv);
         }
 
-        int padding = dp2px(context, 5);
+        int padding = dp2px(5);
         backLayout.setPadding(padding, 0, padding, 0);
         backLayout.setGravity(Gravity.CENTER);
         backLayout.setOnClickListener(listener);
@@ -909,9 +910,13 @@ public class BaseToolbar extends Toolbar {
         return backLayout;
     }
 
-    private static int dp2px(Context context, float dipValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
+    private static int dp2px(float dipValue) {
+
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dipValue,
+                Resources.getSystem().getDisplayMetrics()
+        );
     }
 
     public static int getScreenWidth(Context context) {
