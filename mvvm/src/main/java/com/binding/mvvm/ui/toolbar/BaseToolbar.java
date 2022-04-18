@@ -177,7 +177,7 @@ public class BaseToolbar extends Toolbar {
         }
         mBackView = createImageMenu(mContext, resId, onClickListener);
         int padding = dp2px(mContext, 12);
-        mBackView.setPadding(padding / 3, 0, padding, 0);
+        mBackView.setPadding(padding * 2, 0, padding, 0);
 
         addLeftView(mBackView);
     }
