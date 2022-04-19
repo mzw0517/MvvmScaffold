@@ -18,7 +18,8 @@ object Config {
 
     /**
      * 全局配置toolbar背景色
-     *
+     * 如果toolbarNeedFakeStatusBar为true
+     * 则同样为状态栏的颜色，为的是保持toolbar和状态栏颜色一致
      * 假如某个页面toolbar背景色不一样
      * 可以在实现方法getToolbarConfig(builder: BaseToolbar.Builder)
      * 通过builder.setBackgroundColor()单独修改
@@ -57,11 +58,7 @@ object Config {
 
     /**
      * 全局配置状态栏文字颜色 true为黑色 false为白色
-     *
-     * 假如某个页面返回按钮不一样
-     * 可以在实现方法getToolbarConfig(builder: BaseToolbar.Builder)
-     * 通过builder.setBackButton(R.drawable.xxx)单独修改
      */
-    var darkMode = true
+    var lightMode = true
 
 }

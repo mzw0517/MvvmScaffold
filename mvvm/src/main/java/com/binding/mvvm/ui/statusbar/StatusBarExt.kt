@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 
 private const val COLOR_TRANSPARENT = 0
 
+
 //<editor-fold desc="状态栏颜色">
 /** 设置状态栏颜色 */
 fun Activity.statusBarColor(@ColorInt color: Int) {
